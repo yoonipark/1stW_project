@@ -1,22 +1,44 @@
-// maker.js
-document.addEventListener("DOMContentLoaded", function () {
-  const wordForm = document.getElementById("wordForm");
+// static/maker.js
 
-  wordForm.addEventListener("submit", function (event) {
+document.addEventListener("DOMContentLoaded", () => {
+  const titleInput = document.getElementById("title");
+  const descriptionInput = document.getElementById("description");
+  const wordInput = document.getElementById("word-input");
+  const wordList = document.getElementById("word-list");
+  const gameForm = document.getElementById("game-form");
+  const words = [];
+
+  gameForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const title = document.getElementById("titleInput").value.trim();
-    const description = document
-      .getElementById("descriptionInput")
-      .value.trim();
-    const wordListText = document.getElementById("wordListInput").value.trim();
-    const wordList = wordListText
-      .split("\n")
-      .filter((word) => word.trim() !== "");
-
-    // 등록된 정보를 서버로 전송하거나 필요한 처리를 수행하세요.
-    console.log("Title:", title);
-    console.log("Description:", description);
-    console.log("Word List:", wordList);
+    submitWords();
   });
+
+  window.addWord = () => {
+    const newWord = wordInput.value.trim().toUpperCase();
+    if (newWord && !words.includes(newWord)) {
+      words.push(newWord);
+      updateWordList();
+      wordInput.value = "";
+    }
+  };
+
+  window.submitWords = () => {
+    // 로직 추가: 서버에 단어 목록과 게임 정보를 전송
+    const gameData = {
+      title: titleInput.value,
+      description: descriptionInput.value,
+      words: words,
+    };
+    console.log(gameData);
+    // 여기서 서버로 데이터를 전송하는 코드를 추가해야 합니다.
+  };
+
+  const updateWordList = () => {
+    wordList.innerHTML = "";
+    words.forEach((word) => {
+      const wordItem = document.createElement("div");
+      wordItem.innerText = word;
+      wordList.appendChild(wordItem);
+    });
+  };
 });

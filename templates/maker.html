@@ -2,22 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}" />
     <title>Word Search Maker</title>
+    <link rel="stylesheet" href="maker.css" />
   </head>
   <body>
-    <h1>Word Search Maker</h1>
-    <form action="/start_game" method="post">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required />
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea>
-      <label for="words">Words (comma-separated):</label>
-      <input type="text" id="words" name="words" required />
-      <button type="submit">Create Game</button>
-    </form>
-    <a href="/game">Go to Game</a>
+    <div id="maker-container">
+      <h1>Word Search Maker</h1>
+      <form id="word-form">
+        <label for="word-input">Add Word:</label>
+        <input type="text" id="word-input" placeholder="Enter a word" />
+        <button type="button" onclick="addWord()">Add</button>
+      </form>
+      <div id="word-list"></div>
+      <button type="button" onclick="submitWords()">Submit</button>
+    </div>
+    <script src="maker.js"></script>
   </body>
 </html>

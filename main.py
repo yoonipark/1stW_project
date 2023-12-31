@@ -22,3 +22,4 @@ async def start_game(title: str, description: str, words: List[str]):
     global word_list
     word_list = words
     return {"title": title, "description": description, "words": word_list}
+
