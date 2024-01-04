@@ -1,0 +1,9 @@
+#game-container {
+  text-align: center;
+  margin: 50px;
+}
+
+#word-grid {
+  border: 2px solid #333;
+  /* Add any additional styles as needed */
+}
