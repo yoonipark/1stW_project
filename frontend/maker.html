@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="maker.css" />
+    <title>Word Search Maker</title>
+  </head>
+  <body>
+    <div id="maker-container">
+      <!-- 페이지 제목 -->
+      <h2>Word Search Maker</h2>
+
+      <!-- 타이틀 및 설명 열 형식으로 나열 -->
+      <div id="info-section">
+        <div>
+          <!-- 타이틀 입력 -->
+          <label for="title-input">Title:</label>
+          <input type="text" id="title-input" required />
+        </div>
+        <div>
+          <!-- 설명 입력 -->
+          <label for="description-input">Description:</label>
+          <textarea id="description-input" rows="3" required></textarea>
+        </div>
+      </div>
+
+      <!-- 단어 등록 영역 추가 -->
+      <div id="word-registration">
+        <!-- 단어 등록 섹션 제목 -->
+        <h3>Word List</h3>
+        <form id="word-form">
+          <!-- 단어 입력 -->
+          <label for="word-input">Enter Word:</label>
+          <input type="text" id="word-input" required />
+          <!-- 등록 버튼 -->
+          <button type="button" onclick="registerWord()">Register Word</button>
+        </form>
+
+        <!-- 등록된 단어 목록을 표시할 영역 추가 -->
+        <div id="registered-words">
+          <!-- 등록된 단어 섹션 제목 -->
+          <h3>Registered Words</h3>
+          <ul></ul>
+        </div>
+      </div>
+
+      <!-- 경고 메시지를 표시할 영역 추가 -->
+      <div id="warning-message"></div>
+
+      <button id="create-game-btn" onclick="submitForm()">Submit</button>
+
+      <script src="maker.js"></script>
+      <script>
+        // 게임 만들기 버튼 클릭 시 호출될 함수
+        async function submitForm() {
+          // 제목, 설명, 등록된 단어들을 가져오기
+          const title = document.getElementById("title-input").value;
+          const description =
+            document.getElementById("description-input").value;
+          const wordsList = Array.from(
+            document.getElementById("registered-words").querySelectorAll("li")
+          ).map((li) => li.textContent);
+
+          // 최소 10개의 단어가 등록되었는지 확인
+          if (wordsList.length < 10) {
+            document.getElementById("warning-message").innerText =
+              "Please register at least 10 words.";
+            return;
+          } else {
+            // 경고 메시지가 있으면 지우기
+            document.getElementById("warning-message").innerText = "";
+          }
+
+          // 데이터를 서버로 전송
+          const response = await fetch("/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: title,
+              description: description,
+              words: wordsList,
+            }),
+          });
+
+          // 서버 응답 확인
+          if (response.ok) {
+            // 게임 페이지로 리다이렉트
+            window.location.href = "/game"; // Adjust the path if needed
+          } else {
+            alert("Error submitting the form. Please try again.");
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

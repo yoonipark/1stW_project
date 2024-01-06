@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word Search Game</title>
+  </head>
+  <body>
+    <h1>Welcome to Word Search Game!</h1>
+    <a href="/game">Play Game</a>
+    <form id="word-form" action="/submit" method="post">
+      <!-- 단어 입력 -->
+      <label for="word-input">Enter Word:</label>
+      <input type="text" id="word-input" required />
+      <!-- 등록 버튼 -->
+      <button type="button" onclick="registerWord()">Register Word</button>
+    </form>
+  </body>
+</html>

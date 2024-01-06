@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Search</title>
+    <link rel="stylesheet" href="game.css">
+  </head>
+
+  <body>
+    <div id="play_container">
+      <!-- 기타 게임 컨테이너 요소 -->
+      <h1>{{ game_info.title }} Game</h1>
+    <p>Description: {{ game_info.description }}</p>
+    <h2>Word List:</h2>
+    <ul>
+        {% for word in game_info.words %}
+            <li>{{ word }}</li>
+        {% endfor %}
+    </ul>
+      <!-- 단어 목록이 표시될 영역 -->
+      <div id="word_list_container">
+        <div class="slimScrollDiv">
+            <div id="word_list_scroller">
+                <!-- 기존의 단어 목록은 유지하고, 추가로 메이커에서 등록한 단어 목록을 출력합니다 -->
+                <ul id="word_list" class="content">
+                    <li>AISLE</li>
+                    <li>ASBESTOS</li>
+                    <li>BATHS</li>
+                    {% for word in word_list %}
+                        <li>{{ word }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="slimScrollBar"></div>
+            <div class="slimScrollRail"></div>
+        </div>
+    </div>
+    
+      </div>
+
+      <!-- 게임 캔버스가 들어갈 영역 -->
+      <div id="canvas_container" class="overlay_parent">
+        <!-- 기타 게임 캔버스 요소들 -->
+      </div>
+    </div>
+
+    <!-- 찾은 단어가 표시될 영역 -->
+    <div id="word_found_div">
+      <h4 id="word_found">-</h4>
+    </div>
+
+    <!-- 툴팁 영역 -->
+    <div id="tooltip" class="tooltip top">
+      <div class="tooltip-arrow"></div>
+      <div class="tooltip-inner"></div>
+    </div>
+
+    <!-- 여기에 스크립트 및 기타 body 요소를 포함하세요 -->
+    <script>
+      // maker 페이지에서 등록한 단어 리스트
+      const makerWordList = [
+        "AISLE",
+        "ASBESTOS",
+        "BATHS",
+        "BLACKBALLING",
+        "CANCEROUS",
+        "CHILLI",
+        "CINEMAS",
+        "CUB",
+        "DORM",
+        "EMBERS",
+        "EXPENSIVE",
+        "FRILLIES",
+        "GAPE",
+        "GHOSTLINESS",
+        "HASP",
+        "ILLUMINATED",
+        "KOALA",
+        "KOOKING",
+        "MISDEAL",
+        "NEURON",
+        "NUMB",
+        "OCARINA",
+        "OMIT",
+        "ORTHOGRAPHIC",
+        "PENSION",
+        "PORRIDGE",
+        "PROS",
+        "QUIP",
+        "SANITY",
+        "SCRIMSHAWED",
+        "SEES",
+        "SHOEING",
+        "SIGN",
+        "SPOKE",
+        "SPORES",
+        "STAB",
+        "STATEWIDE",
+        "STEM",
+        "TAXI",
+        "TIERS",
+        "TRAM",
+        "WINDOWSILL",
+        "YELLS",
+      ];
+
+      // 단어 목록을 동적으로 채우기
+      const wordListContainer = document.getElementById("word_list");
+      makerWordList.forEach((word) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = word;
+        wordListContainer.appendChild(listItem);
+      });
+    </script>
+  </body>
+</html>
