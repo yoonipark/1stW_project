@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body >
+    <div id="play_container">
+      <div id="fb-root" class="fb_reset">
+      </div>
+      
+
+      <div id="body_wrapper">
+        <div id="outer_container">
+
+          <div id="main_container" class="boxed">
+            <div id="top_bar" class="content">
+              <div>
+                <h2 data-loc="app_name">Word Search</h2>
+              </div>
+            </div>
+
+                <div id="words_header" >
+                  <h4 id="words_left">0 / 43</h4>
+                </div>
+
+                  <h4 id="current_word" class="centered_over"></h4>
+                </div>
+              </div>
+
+              <div >
+                <div id="word_list_container" >
+                  <div
+                    class="slimScrollDiv">
+                    <div
+                      id="word_list_scroller"
+                    >
+                      <ul
+                        id="word_list"
+                        class="content"
+                      >
+                        <li>AISLE</li>
+                        <li>ASBESTOS</li>
+                        <li>BATHS</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="slimScrollBar" ></div>
+                    <div class="slimScrollRail"></div>
+                  </div>
+                </div>
+                <div
+                  id="canvas_container"
+                  class="overlay_parent"
+                 >
+                  <div
+                    id="generating_puzzle"
+                    class="overlay_centered"
+                  >
+                    <h4
+                      id="generating_puzzle_title"
+                      data-loc="generating_puzzle"
+                    >
+                      Generating puzzle...
+                    </h4>
+                    <i
+                      class="icon-spinner animate-spin"
+                    ></i>
+                  </div>
+                  <canvas
+                    id="word_grid"
+                  ></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="word_found_div" >
+        <h4 id="word_found">-</h4>
+      </div>
+
+      
+
+      <div
+        id="tooltip"
+        class="tooltip top"
+      >
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner"></div>
+      </div>
+    </div>
+
+    <div id="print_container">
+      <div id="print_word_grid">
+        <table>
+          <tbody>
+            <tr>
+              <td>E</td>
+              <td>M</td>
+              <td>B</td>
+              <td>L</td>
+              <td>A</td>
+              <td>C</td>
+              <td>K</td>
+              <td>B</td>
+              <td>A</td>
+              <td>L</td>
+              <td>L</td>
+              <td>I</td>
+              <td>N</td>
+              <td>G</td>
+              <td>I</td>
+              <td>S</td>
+            </tr>
+            <tr>
+              <td>E</td>
+              <td>U</td>
+              <td>I</td>
+              <td>L</td>
+              <td>L</td>
+              <td>U</td>
+              <td>M</td>
+              <td>I</td>
+              <td>N</td>
+              <td>A</td>
+              <td>T</td>
+              <td>E</td>
+              <td>D</td>
+              <td>G</td>
+              <td>X</td>
+              <td>R</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>D</td>
+              <td>A</td>
+              <td>I</td>
+              <td>S</td>
+              <td>U</td>
+              <td>O</td>
+              <td>R</td>
+              <td>E</td>
+              <td>C</td>
+              <td>N</td>
+              <td>A</td>
+              <td>C</td>
+              <td>H</td>
+              <td>A</td>
+              <td>E</td>
+            </tr>
+            <tr>
+              <td>N</td>
+              <td>O</td>
+              <td>I</td>
+              <td>S</td>
+              <td>N</td>
+              <td>E</td>
+              <td>P</td>
+              <td>D</td>
+              <td>T</td>
+              <td>L</td>
+              <td>I</td>
+              <td>B</td>
+              <td>F</td>
+              <td>O</td>
+              <td>T</td>
+              <td>B</td>
+            </tr>
+            <tr>
+              <td>K</td>
+              <td>D</td>
+              <td>E</td>
+              <td>W</td>
+              <td>A</td>
+              <td>H</td>
+              <td>S</td>
+              <td>M</td>
+              <td>I</td>
+              <td>R</td>
+              <td>C</td>
+              <td>S</td>
+              <td>A</td>
+              <td>S</td>
+              <td>A</td>
+              <td>M</td>
+            </tr>
+            <tr>
+              <td>E</td>
+              <td>S</td>
+              <td>H</td>
+              <td>O</td>
+              <td>E</td>
+              <td>I</td>
+              <td>N</td>
+              <td>G</td>
+              <td>Z</td>
+              <td>S</td>
+              <td>A</td>
+              <td>N</td>
+              <td>I</td>
+              <td>T</td>
+              <td>Y</td>
+              <td>E</td>
+            </tr>
+            <tr>
+              <td>V</td>
+              <td>G</td>
+              <td>I</td>
+              <td>D</td>
+              <td>M</td>
+              <td>T</td>
+              <td>I</td>
+              <td>M</td>
+              <td>O</td>
+              <td>O</td>
+              <td>I</td>
+              <td>M</td>
+              <td>S</td>
+              <td>L</td>
+              <td>H</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>I</td>
+              <td>D</td>
+              <td>D</td>
+              <td>N</td>
+              <td>B</td>
+              <td>A</td>
+              <td>A</td>
+              <td>C</td>
+              <td>F</td>
+              <td>R</td>
+              <td>I</td>
+              <td>L</td>
+              <td>L</td>
+              <td>I</td>
+              <td>E</td>
+              <td>S</td>
+            </tr>
+            <tr>
+              <td>S</td>
+              <td>C</td>
+              <td>H</td>
+              <td>I</td>
+              <td>L</td>
+              <td>L</td>
+              <td>I</td>
+              <td>T</td>
+              <td>A</td>
+              <td>P</td>
+              <td>C</td>
+              <td>Q</td>
+              <td>E</td>
+              <td>N</td>
+              <td>E</td>
+              <td>B</td>
+            </tr>
+            <tr>
+              <td>N</td>
+              <td>T</td>
+              <td>O</td>
+              <td>W</td>
+              <td>R</td>
+              <td>N</td>
+              <td>S</td>
+              <td>C</td>
+              <td>S</td>
+              <td>N</td>
+              <td>O</td>
+              <td>R</td>
+              <td>U</td>
+              <td>E</td>
+              <td>N</td>
+              <td>E</td>
+            </tr>
+            <tr>
+              <td>E</td>
+              <td>Q</td>
+              <td>E</td>
+              <td>S</td>
+              <td>E</td>
+              <td>R</td>
+              <td>O</td>
+              <td>P</td>
+              <td>S</td>
+              <td>A</td>
+              <td>H</td>
+              <td>D</td>
+              <td>S</td>
+              <td>S</td>
+              <td>D</td>
+              <td>S</td>
+            </tr>
+            <tr>
+              <td>P</td>
+              <td>P</td>
+              <td>U</td>
+              <td>M</td>
+              <td>E</td>
+              <td>K</td>
+              <td>O</td>
+              <td>P</td>
+              <td>S</td>
+              <td>L</td>
+              <td>L</td>
+              <td>E</td>
+              <td>Y</td>
+              <td>S</td>
+              <td>O</td>
+              <td>T</td>
+            </tr>
+            <tr>
+              <td>X</td>
+              <td>I</td>
+              <td>A</td>
+              <td>I</td>
+              <td>C</td>
+              <td>I</td>
+              <td>H</td>
+              <td>P</td>
+              <td>A</td>
+              <td>R</td>
+              <td>G</td>
+              <td>O</td>
+              <td>H</td>
+              <td>T</td>
+              <td>R</td>
+              <td>O</td>
+            </tr>
+            <tr>
+              <td>E</td>
+              <td>S</td>
+              <td>T</td>
+              <td>G</td>
+              <td>P</td>
+              <td>G</td>
+              <td>N</td>
+              <td>I</td>
+              <td>K</td>
+              <td>O</td>
+              <td>O</td>
+              <td>K</td>
+              <td>G</td>
+              <td>V</td>
+              <td>M</td>
+              <td>S</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
